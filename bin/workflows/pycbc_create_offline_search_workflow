@@ -466,9 +466,10 @@ for key in final_bg_files:
     #                            tags=bg_file.tags + ['open_box'])
     #ifar_cb = wf.make_ifar_plot(workflow, bg_file, closed_dir,
     #                            tags=bg_file.tags + ['closed_box'])
-    #table = wf.make_foreground_table(workflow, bg_file, hdfbank[0], open_dir,
-    #                                 singles=insps, extension='.html',
-    #                                 tags=["html"])
+    table = wf.make_foreground_table(workflow, bg_file, hdfbank[0], open_dir,
+                                     singles=insps, extension='.html',
+                                     tags=["html"])
+    symlink_result(table, 'open_box_result/{}_coincidences'.format(key))
 
     #detailed_page = [(snrifar, ratehist), (snrifar_ifar, ifar_ob), (table,)]
     # FIXME: NEED TO ADD NOT WORKING PLOTS, AS ABOVE
@@ -597,8 +598,8 @@ for inj_file, tag in zip(inj_files, inj_tags):
                                  exclude=['all', 'summ'], require='sub',
                                  tags=[tag])
 
-    #found_table = wf.make_inj_table(workflow, found_inj, injdir,
-    #                                singles=insps, tags=[tag + 'found'])
+    found_table = wf.make_inj_table(workflow, found_inj, injdir,
+                                    singles=insps, tags=[tag + 'found'])
     missed_table = wf.make_inj_table(workflow, found_inj, injdir,
                                      missed=True, tags=[tag + 'missed'])
 
